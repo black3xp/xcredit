@@ -1,10 +1,9 @@
 /**
- * Usuarios.js
+ * Clientes.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
-const bcrypt = require('bcrypt');
 
 module.exports = {
 
@@ -17,17 +16,21 @@ module.exports = {
       type: 'string',
       required: true
     },
-    name: {
+    cedula: {
       type: 'string',
       required: true,
       unique: true
+    },
+    telefono: {
+      type: 'string',
+      required: true
     },
     email: {
       type: 'string',
       required: true,
       unique: true
     },
-    password: {
+    direccion: {
       type: 'string',
       required: true
     },
@@ -37,16 +40,15 @@ module.exports = {
     },
     empresa: {
       model: 'Empresas'
+    },
+    usuario: {
+      model: 'Usuarios'
     }
   },
 
-  beforeCreate: (values, next) => {
-    bcrypt.hash(values.password, 10, (err, hash) => {
-      if (err) return next(err);
-      values.password = hash;
-      next();
-    });
-  }
+  // beforeCreate: (values, next) => {
+    
+  // }
 
 };
 
