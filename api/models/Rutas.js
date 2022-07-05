@@ -33,7 +33,7 @@ module.exports = {
       required: false
     },
     diaCobro: {
-      type: 'string',
+      type: 'number',
       required: true
     },
     usuario: {

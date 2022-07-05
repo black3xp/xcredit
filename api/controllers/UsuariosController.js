@@ -8,18 +8,23 @@ const sign = require('jwt-encode');
 const bcrypt = require('bcrypt');
 module.exports = {
     setUsuario: async (req, res) => {
-        const { nombres, apellidos, name, email, password } = req.body;
+        const { nombres, apellidos, name, email, password, empresa } = req.body;
         if (!nombres || !apellidos || !name || !email || !password) {
             return res.badRequest({
                 code: 'ERR_USER_CREATE',
                 message: 'Faltan datos para crear el usuario'
             });
         }
-        const usuario = await Usuarios.create({ nombres, apellidos, name, email, password }).fetch();
+        const usuario = await Usuarios.create({ nombres, apellidos, name, email, password, empresa }).fetch();
         return res.ok(usuario.id);
     },
     getUsuarios: async (req, res) => {
-        const usuarios = await Usuarios.find();
+        const usuarios = await Usuarios.find({
+            where: {
+                deleted: false
+            },
+            select: ['id', 'nombres', 'apellidos', 'name', 'email', 'empresa'],
+        });
         return res.ok(usuarios);
     },
     getUsuario: async (req, res) => {
@@ -70,7 +75,8 @@ module.exports = {
                 name: usuario.name,
                 email: usuario.email,
                 nombres: usuario.nombres,
-                apellidos: usuario.apellidos
+                apellidos: usuario.apellidos,
+                empresa: usuario.empresa
             }, 
                 sails.config.session.secret,
             );

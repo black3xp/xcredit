@@ -54,6 +54,9 @@ module.exports = {
     pagos: {
       collection: 'Pagos',
       via: 'prestamo'
+    },
+    ruta: {
+      model: 'Rutas'
     }
   },
 
