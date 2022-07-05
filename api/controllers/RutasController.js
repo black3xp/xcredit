@@ -25,7 +25,7 @@ module.exports = {
         }
         const ruta = await Rutas.create({ nombre, descripcion, direccion, ciudad, referencias, diaCobro, usuario }).fetch();
 
-        if(!ruta) {
+        if (!ruta) {
             return res.badRequest({
                 code: 'ERR_RUTA_CREATE',
                 message: 'Error al crear la ruta'
@@ -35,13 +35,17 @@ module.exports = {
         return res.ok(ruta.id);
     },
     getRutas: async (req, res) => {
-        const { b } = req.query;
+        const { b, top } = req.query;
         const rutas = await Rutas.find({
             where: {
                 deleted: false,
-                
-            }
-        });
+                nombre: {
+                    contains: b
+                }
+            },
+        }).meta({
+            makeLikeModifierCaseInsensitive: true
+        }).limit(top);
         return res.ok(rutas);
     },
     getRutaById: async (req, res) => {
