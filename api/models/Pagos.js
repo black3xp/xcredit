@@ -1,5 +1,5 @@
 /**
- * Prestamos.js
+ * Pagos.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -16,7 +16,7 @@ module.exports = {
       type: 'number',
       required: true
     },
-    cuotas: {
+    numeroCuota: {
       type: 'number',
       required: true
     },
@@ -24,8 +24,8 @@ module.exports = {
       type: 'string',
       required: true
     },
-    cliente: {
-      model: 'Clientes'
+    prestamo: {
+      model: 'Prestamos'
     },
     usuario: {
       model: 'Usuarios'
@@ -38,22 +38,6 @@ module.exports = {
       type: 'string',
       enum: ['pendiente', 'pagado', 'cancelado'],
       defaultsTo: 'Pendiente'
-    },
-    cuotasPagadas: {
-      type: 'number',
-      defaultsTo: 0
-    },
-    cuotasPendientes: {
-      type: 'number',
-      defaultsTo: 0
-    },
-    cuotasCanceladas: {
-      type: 'number',
-      defaultsTo: 0
-    },
-    pagos: {
-      collection: 'Pagos',
-      via: 'prestamo'
     }
   },
 
