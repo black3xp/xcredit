@@ -37,15 +37,8 @@ module.exports = {
       type: 'boolean',
       defaultsTo: false
     },
-    diaPago: {
-      type: 'number',
-      required: false,
-      defaultsTo: 1
-    },
-    diaCorte: {
-      type: 'number',
-      required: false,
-      defaultsTo: 1
+    usuario: {
+      model: 'Usuarios'
     }
   },
 
