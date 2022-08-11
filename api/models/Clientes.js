@@ -16,19 +16,88 @@ module.exports = {
       type: 'string',
       required: true
     },
-    cedula: {
+    apodo: {
+      type: 'string',
+      required: false
+    },
+    documentoIdentidad: {
       type: 'string',
       required: true,
       unique: true
     },
-    telefono: {
+    fechaNacimiento: {
+      type: 'ref',
+      columnType: 'date'
+    },
+    ocupacion: {
       type: 'string',
-      required: true
+      required: false
+    },
+    telefonos: {
+      type: 'json',
+      columnType: 'array',
+    },
+    nacionalidad: {
+      type: 'string',
+      required: false
+    },
+    sexo: {
+      type: 'string',
+      isIn: ['M', 'F'],
+      defaultsTo: 'M'
+    },
+    tipoVivienda: {
+      type: 'string',
+      isIn: ['Propia', 'Alquilada', 'Familiar'],
+    },
+    estadoLaboral: {
+      type: 'string',
+      isIn: ['Empleado', 'Estudiante', 'Independiente', 'Desempleado'],
+    },
+    estadoCivil: {
+      type: 'string',
+      isIn: ['Soltero', 'Casado', 'Viudo', 'Divorciado', 'Union Libre'],
+    },
+    ingresos: {
+      type: 'number',
+      required: true,
+    },
+    dependientes: {
+      type: 'number',
+      required: true,
+    },
+    provincia: {
+      type: 'string',
+    },
+    municipio: {
+      type: 'string',
+    },
+    sector: {
+      type: 'string',
+    },
+    recomendadoPor: {
+      model: 'Clientes'
+    },
+    ruta: {
+      model: 'Rutas'
+    },
+    foto: {
+      model: 'Fotos'
+    },
+    firma: {
+      model: 'Firmas'
     },
     email: {
       type: 'string',
-      required: true,
-      unique: true
+      required: false,
+    },
+    garante: {
+      type: 'json',
+      columnType: 'object',
+    },
+    datosBancarios: {
+      type: 'json',
+      columnType: 'object',
     },
     direccion: {
       type: 'string',

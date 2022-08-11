@@ -36,7 +36,7 @@ module.exports = {
     },
     estado: {
       type: 'string',
-      enum: ['pendiente', 'pagado', 'cancelado'],
+      isIn: ['pendiente', 'pagado', 'cancelado'],
       defaultsTo: 'Pendiente'
     },
     cuotasPagadas: {
